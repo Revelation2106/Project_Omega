@@ -7,6 +7,28 @@ public class MenuManager : MonoBehaviour
     [SerializeField]
     private GameObject m_MainMenuPanel, m_OptionsPanel;
 
+    private void Start()
+    {
+        GameSettings.LoadSettings();
+        SetAudioVolume();
+
+        Debug.Log("GAME START");
+        GameSettings.PrintSettings();
+
+        // TODO: Debug, remove later
+        AudioManager.m_Instance.Play("Hillbilly");
+        AudioManager.m_Instance.Play("Raving");
+        AudioManager.m_Instance.Play("Deed");
+    }
+
+    private void SetAudioVolume()
+    {
+        AudioManager.m_Instance.SetMasterVolume(GameSettings.s_MasterVolume);
+        AudioManager.m_Instance.SetMusicVolume(GameSettings.s_MusicVolume);
+        AudioManager.m_Instance.SetDialogueVolume(GameSettings.s_DialogueVolume);
+        AudioManager.m_Instance.SetAmbientVolume(GameSettings.s_AmbientVolume);
+    }
+
     public void PlayGame()
     {
         SceneManager.LoadScene("GameWorld");
@@ -26,6 +48,7 @@ public class MenuManager : MonoBehaviour
         EditorApplication.isPlaying = false;
 #endif
 
+        GameSettings.SaveSettings();
         Application.Quit();
     }
 }

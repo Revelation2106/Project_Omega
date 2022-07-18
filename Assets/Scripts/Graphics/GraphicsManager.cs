@@ -1,11 +1,17 @@
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class GraphicsManager : MonoBehaviour
 {
-    Resolution[] m_Resolutions;
-    public TMPro.TMP_Dropdown m_ResolutionDropdown, m_QualityDropdown;
+    private Resolution[] m_Resolutions;
+
+    [SerializeField]
+    private RenderPipelineAsset[] m_RenderPipelineAssets;
+
+    public TMPro.TMP_Dropdown m_QualityDropdown, m_ResolutionDropdown, m_WindowModeDropdown;
 
     private void Start()
     {
@@ -33,14 +39,13 @@ public class GraphicsManager : MonoBehaviour
         m_ResolutionDropdown.AddOptions(options);
         m_ResolutionDropdown.value = currentResolutionIndex;
         m_ResolutionDropdown.RefreshShownValue();
-
-        m_QualityDropdown.value = QualitySettings.GetQualityLevel();
-        m_QualityDropdown.RefreshShownValue();
     }
 
-    public void SetGraphicsQuality(int _qaulityIndex)
+    public void SetGraphicsQuality(int _qualityIndex)
     {
-        QualitySettings.SetQualityLevel(_qaulityIndex);
+        Debug.Log("SETGRAPHICSQUALITY index: " + _qualityIndex);
+        QualitySettings.SetQualityLevel(_qualityIndex);
+        QualitySettings.renderPipeline = m_RenderPipelineAssets[_qualityIndex];
     }
 
     public void SetScreenResolution(int _resolutionIndex)
@@ -64,6 +69,7 @@ public class GraphicsManager : MonoBehaviour
                 break;
             default:
                 Debug.Log("Failed to set window mode - index out of range!");
-                break;        }
+                break;        
+        }
     }
 }

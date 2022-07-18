@@ -2451,7 +2451,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 653476662}
+      - m_Target: {fileID: 908165447}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: DisplayOptionsMenu
         m_Mode: 1
@@ -2510,12 +2510,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 653476663}
-  - component: {fileID: 653476662}
-  - component: {fileID: 653476664}
   - component: {fileID: 653476667}
-  - component: {fileID: 653476666}
   - component: {fileID: 653476665}
-  - component: {fileID: 653476668}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2523,20 +2519,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &653476662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 653476661}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11b8658789d5b3e4a92dde16f09d8b37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MainMenuPanel: {fileID: 908165443}
-  m_OptionsPanel: {fileID: 1397147311}
 --- !u!4 &653476663
 Transform:
   m_ObjectHideFlags: 0
@@ -2552,20 +2534,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &653476664
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 653476661}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc5aa62cf37775947b01f4c4dc6468c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MainMenuPanel: {fileID: 908165443}
-  m_OptionsPanel: {fileID: 1397147311}
 --- !u!114 &653476665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2578,21 +2546,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2159ae661fa4cb64bba156b2e2f931b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ResolutionDropdown: {fileID: 482757267}
+  m_RenderPipelineAssets:
+  - {fileID: 11400000, guid: d0e2fc18fe036412f8223b3b3d9ad574, type: 2}
+  - {fileID: 11400000, guid: e1260c1148f6143b28bae5ace5e9c5d1, type: 2}
+  - {fileID: 11400000, guid: 7b7fd9122c28c4d15b667c7040e3b3fd, type: 2}
   m_QualityDropdown: {fileID: 889682123}
---- !u!114 &653476666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 653476661}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 332f9b00d0523674598dea256300a193, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AudioMixer: {fileID: 24100000, guid: bccf11542f54f214294452f1cf828301, type: 2}
+  m_ResolutionDropdown: {fileID: 482757267}
+  m_WindowModeDropdown: {fileID: 335875827}
 --- !u!114 &653476667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2605,19 +2565,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8d8c4aac5465ed418e1ca7e48448459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Sounds: []
---- !u!114 &653476668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 653476661}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5efe7de2a2372234992c4b917645fff0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Sounds:
+  - m_Clip: {fileID: 8300000, guid: 3d378fc80d0065447ae1a64f1bbdec8f, type: 3}
+    m_Volume: 1
+    m_Pitch: 1
+    m_Name: Hillbilly
+    m_Loop: 1
+    m_Source: {fileID: 0}
+    m_Group: {fileID: 4187954582001743761, guid: bccf11542f54f214294452f1cf828301,
+      type: 2}
+  - m_Clip: {fileID: 8300000, guid: 20e935763808bc34d95f4a6ce120c44f, type: 3}
+    m_Volume: 1
+    m_Pitch: 1
+    m_Name: Raving
+    m_Loop: 1
+    m_Source: {fileID: 0}
+    m_Group: {fileID: 7577087005263584693, guid: bccf11542f54f214294452f1cf828301,
+      type: 2}
+  - m_Clip: {fileID: 8300000, guid: 9fb208cae9b973949aee9505233d1cf4, type: 3}
+    m_Volume: 1
+    m_Pitch: 1
+    m_Name: Deed
+    m_Loop: 1
+    m_Source: {fileID: 0}
+    m_Group: {fileID: 1493314027626576754, guid: bccf11542f54f214294452f1cf828301,
+      type: 2}
+  m_AudioMixer: {fileID: 24100000, guid: bccf11542f54f214294452f1cf828301, type: 2}
 --- !u!1 &676078658
 GameObject:
   m_ObjectHideFlags: 0
@@ -3084,7 +3057,7 @@ RectTransform:
   m_GameObject: {fileID: 814074066}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 5.0000005, y: 5.0000005, z: 5.0000005}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1402040791}
@@ -3093,7 +3066,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -235.99994}
+  m_AnchoredPosition: {x: 0, y: -235.99988}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &814074068
@@ -3646,6 +3619,7 @@ GameObject:
   - component: {fileID: 908165444}
   - component: {fileID: 908165446}
   - component: {fileID: 908165445}
+  - component: {fileID: 908165447}
   m_Layer: 5
   m_Name: MainMenuPanel
   m_TagString: Untagged
@@ -3714,6 +3688,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 908165443}
   m_CullTransparentMesh: 1
+--- !u!114 &908165447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908165443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11b8658789d5b3e4a92dde16f09d8b37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MainMenuPanel: {fileID: 908165443}
+  m_OptionsPanel: {fileID: 1397147311}
 --- !u!1 &917591075
 GameObject:
   m_ObjectHideFlags: 0
@@ -3802,10 +3790,22 @@ MonoBehaviour:
   m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.0001
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 653476667}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: SetDialogueVolume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &959159220
 GameObject:
   m_ObjectHideFlags: 0
@@ -4135,7 +4135,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 653476662}
+      - m_Target: {fileID: 908165447}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
@@ -5280,7 +5280,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 653476664}
+      - m_Target: {fileID: 1397147315}
         m_TargetAssemblyTypeName: OptionsManager, Assembly-CSharp
         m_MethodName: HideOptionsMenu
         m_Mode: 1
@@ -5341,6 +5341,7 @@ GameObject:
   - component: {fileID: 1397147312}
   - component: {fileID: 1397147314}
   - component: {fileID: 1397147313}
+  - component: {fileID: 1397147315}
   m_Layer: 5
   m_Name: OptionsPanel
   m_TagString: Untagged
@@ -5410,6 +5411,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1397147311}
   m_CullTransparentMesh: 1
+--- !u!114 &1397147315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1397147311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc5aa62cf37775947b01f4c4dc6468c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MainMenuPanel: {fileID: 908165443}
+  m_OptionsPanel: {fileID: 1397147311}
+  m_MasterVolumeSlider: {fileID: 1968358564}
+  m_MusicVolumeSlider: {fileID: 1791506560}
+  m_DialogueVolumeSlider: {fileID: 917591077}
+  m_AmbientVolumeSlider: {fileID: 1914647942}
+  m_ResolutionDropdown: {fileID: 482757267}
+  m_QualityDropdown: {fileID: 889682123}
+  m_WindowModeDropdown: {fileID: 335875827}
 --- !u!1 &1402040790
 GameObject:
   m_ObjectHideFlags: 0
@@ -5614,7 +5636,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 653476662}
+      - m_Target: {fileID: 908165447}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: PlayGame
         m_Mode: 1
@@ -6740,10 +6762,22 @@ MonoBehaviour:
   m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.0001
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 653476667}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: SetMusicVolume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1801389172
 GameObject:
   m_ObjectHideFlags: 0
@@ -7078,10 +7112,22 @@ MonoBehaviour:
   m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.0001
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 653476667}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: SetAmbientVolume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1942442154
 GameObject:
   m_ObjectHideFlags: 0
@@ -7469,13 +7515,13 @@ MonoBehaviour:
   m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.0001
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 653476664}
-        m_TargetAssemblyTypeName: OptionsManager, Assembly-CSharp
-        m_MethodName: SetVolume
+      - m_Target: {fileID: 653476667}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: SetMasterVolume
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
