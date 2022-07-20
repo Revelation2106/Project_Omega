@@ -27,8 +27,9 @@ public class OptionsManager : MonoBehaviour
         //m_ResolutionDropdown.value = Array.IndexOf(Screen.resolutions, Screen.currentResolution);
         //m_ResolutionDropdown.RefreshShownValue();
 
-        //m_WindowModeDropdown.value = GameSettings.s_WindowModeIndex;
-        //m_WindowModeDropdown.RefreshShownValue();
+        // TODO: update value on game load
+        m_WindowModeDropdown.value = GameSettings.s_WindowModeIndex > 2 ? 2 : GameSettings.s_WindowModeIndex;
+        m_WindowModeDropdown.RefreshShownValue();
     }
 
     public void HideOptionsMenu()

@@ -12,6 +12,7 @@ public class MenuManager : MonoBehaviour
         GameSettings.LoadSettings();
         SetAudioVolume();
 
+        // TODO: Debug, remove later
         Debug.Log("GAME START");
         GameSettings.PrintSettings();
 

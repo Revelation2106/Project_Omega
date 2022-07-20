@@ -16,7 +16,6 @@ public class GameSettings_Internal
         AudioManager.m_Instance.m_AudioMixer.GetFloat("DialogueVolume", out m_DialogueVolume);
         AudioManager.m_Instance.m_AudioMixer.GetFloat("AmbientVolume", out m_AmbientVolume);
 
-        Debug.Log("GS_INTERNAL - quality level: " + QualitySettings.GetQualityLevel().ToString());
         m_QualityIndex = QualitySettings.GetQualityLevel(); // TODO: Might need to set render pipeline here too
         m_WindowModeIndex = (int)Screen.fullScreenMode;
 
@@ -98,13 +97,13 @@ public static class GameSettings
         //Debug.Log("Music volume: " + s_MusicVolume);
         //Debug.Log("Dialogue volume: " + s_DialogueVolume);
         //Debug.Log("Ambient volume: " + s_AmbientVolume);
-        Debug.Log("Quality index: " + s_QualityIndex);
+        //Debug.Log("Quality index: " + s_QualityIndex);
         Debug.Log("Window mode index: " + s_WindowModeIndex);
 
-        Debug.Log("Resolution:");
-        foreach(var v in s_Resolution)
-        {
-            Debug.Log(v);
-        }
+        //Debug.Log("Resolution:");
+        //foreach(var v in s_Resolution)
+        //{
+        //    Debug.Log(v);
+        //}
     }
 }

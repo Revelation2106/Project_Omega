@@ -56,16 +56,20 @@ public class GraphicsManager : MonoBehaviour
 
     public void SetWindowMode(int _windowModeIndex)
     {
+        //TODO: apply resolution correctly when changing window mode
         switch(_windowModeIndex)
         {
             case 0:
-                Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, FullScreenMode.ExclusiveFullScreen);
+                Screen.fullScreen = true;
+                Screen.SetResolution(Screen.width, Screen.height, FullScreenMode.ExclusiveFullScreen);
                 break;
             case 1:
-                Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, FullScreenMode.Windowed);
+                Screen.fullScreen = false;
+                Screen.SetResolution(Screen.width, Screen.height, FullScreenMode.FullScreenWindow);
                 break;
             case 2:
-                Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, FullScreenMode.FullScreenWindow);
+                Screen.fullScreen = false;
+                Screen.SetResolution(Screen.width, Screen.height, FullScreenMode.Windowed);
                 break;
             default:
                 Debug.Log("Failed to set window mode - index out of range!");

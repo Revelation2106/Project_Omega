@@ -18,3 +18,6 @@
 - Fixed issue with quality not correctly applying and persisting between sessions
 - TODO: 
 	- Fix fullscreen mode, currently doesn't apply correctly
+	
+20/07/22
+- Fixed fullscreen mode not applying correctly between sessions
