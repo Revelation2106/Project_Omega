@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class OptionsManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject m_MainMenuPanel, m_OptionsPanel;
+    private GameObject m_MainMenuPanel, m_OptionsPanel, m_ConfirmGraphicsPanel;
 
     [SerializeField]
     private Slider m_MasterVolumeSlider, m_MusicVolumeSlider, m_DialogueVolumeSlider, m_AmbientVolumeSlider;
@@ -30,15 +30,13 @@ public class OptionsManager : MonoBehaviour
         // TODO: update value on game load
         m_WindowModeDropdown.value = GameSettings.s_WindowModeIndex > 2 ? 2 : GameSettings.s_WindowModeIndex;
         m_WindowModeDropdown.RefreshShownValue();
+
+        m_ConfirmGraphicsPanel.SetActive(false);
     }
 
     public void HideOptionsMenu()
     {
         GameSettings.SaveSettings();
-
-        // TODO: Debug, remove later
-        Debug.Log("\nCLOSED OPTIONS MENU");
-        GameSettings.PrintSettings();
 
         m_MainMenuPanel.SetActive(true);
         m_OptionsPanel.SetActive(false);

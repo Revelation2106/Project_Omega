@@ -21,3 +21,5 @@
 	
 20/07/22
 - Fixed fullscreen mode not applying correctly between sessions
+- Added a confirmation screen when adjusting graphics settings
+	- TODO: Consider adding "apply" button instead of changing on every dropdown change

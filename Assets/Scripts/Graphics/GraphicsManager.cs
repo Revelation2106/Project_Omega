@@ -11,7 +11,13 @@ public class GraphicsManager : MonoBehaviour
     [SerializeField]
     private RenderPipelineAsset[] m_RenderPipelineAssets;
 
+    [SerializeField]
+    private GameObject m_ConfirmPanel;
+
+    private float m_TimeRemaining = 10.0f;
+
     public TMPro.TMP_Dropdown m_QualityDropdown, m_ResolutionDropdown, m_WindowModeDropdown;
+    public TMPro.TMP_Text m_CountdownText;
 
     private void Start()
     {
@@ -41,9 +47,68 @@ public class GraphicsManager : MonoBehaviour
         m_ResolutionDropdown.RefreshShownValue();
     }
 
+    private void Update()
+    {
+        if (!m_ConfirmPanel.activeSelf)
+            return;
+
+        m_TimeRemaining -= Time.deltaTime;
+        m_CountdownText.text = ((int)m_TimeRemaining % 60).ToString();
+
+        if(m_TimeRemaining <= 0.0f)
+        {
+            m_ConfirmPanel.SetActive(false);
+            RevertGraphics();
+        }
+    }
+
+    public void ShowConfirmGraphicsPanel()
+    {
+        m_ConfirmPanel.SetActive(true);
+        m_TimeRemaining = 10.0f;
+    }
+
+    public void HideConfirmGraphicsPanel()
+    {
+        m_ConfirmPanel.SetActive(false);
+    }
+
+    public void ConfirmGraphics()
+    {
+        GameSettings.SaveSettings();
+    }
+
+    public void RevertGraphics()
+    {
+        SetGraphicsQuality(GameSettings.s_QualityIndex);
+        SetWindowMode(GameSettings.s_WindowModeIndex);
+
+        int currentResolutionIndex = 0;
+
+        for (int i = 0; i < m_Resolutions.Length; i++)
+        {
+            if (m_Resolutions[i].width == GameSettings.s_Resolution[0] &&
+                m_Resolutions[i].height == GameSettings.s_Resolution[1] &&
+                m_Resolutions[i].refreshRate == GameSettings.s_Resolution[2])
+            {
+                currentResolutionIndex = i;
+            }
+        }
+
+        m_QualityDropdown.value = GameSettings.s_QualityIndex;
+        m_QualityDropdown.RefreshShownValue();
+
+        m_ResolutionDropdown.value = currentResolutionIndex;
+        m_ResolutionDropdown.RefreshShownValue();
+
+        m_WindowModeDropdown.value = GameSettings.s_WindowModeIndex;
+        m_WindowModeDropdown.RefreshShownValue();
+
+        SetScreenResolution(currentResolutionIndex);
+    }
+
     public void SetGraphicsQuality(int _qualityIndex)
     {
-        Debug.Log("SETGRAPHICSQUALITY index: " + _qualityIndex);
         QualitySettings.SetQualityLevel(_qualityIndex);
         QualitySettings.renderPipeline = m_RenderPipelineAssets[_qualityIndex];
     }
