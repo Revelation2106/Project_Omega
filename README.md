@@ -23,3 +23,8 @@
 - Fixed fullscreen mode not applying correctly between sessions
 - Added a confirmation screen when adjusting graphics settings
 	- TODO: Consider adding "apply" button instead of changing on every dropdown change
+	
+28/07/22
+- Added third person character controller from Unity Starter Assets
+- Added day/night cycle
+	- TODO: Change horizon colours based on time of day 
