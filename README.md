@@ -28,3 +28,8 @@
 - Added third person character controller from Unity Starter Assets
 - Added day/night cycle
 	- TODO: Change horizon colours based on time of day 
+	
+29/07/22
+- Fixed day/night cycle
+		- Horizon now uses gradient
+		- Moon visible at night and scene now darkens correctly
