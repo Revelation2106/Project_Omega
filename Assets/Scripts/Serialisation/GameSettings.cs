@@ -21,12 +21,9 @@ public class GameSettings_Internal
 
         m_Resolution = new int[3]
         {
-            //Screen.currentResolution.width,
-            //Screen.currentResolution.height,
-            //Screen.currentResolution.refreshRate
             Screen.width,
             Screen.height,
-            Screen.currentResolution.refreshRate // TODO: Test this, might need changing
+            Screen.currentResolution.refreshRate
         };
     }
 }
@@ -84,26 +81,8 @@ public static class GameSettings
         s_DialogueVolume = Mathf.Pow(10.0f, _settings.m_DialogueVolume / 20.0f);
         s_AmbientVolume = Mathf.Pow(10.0f, _settings.m_AmbientVolume / 20.0f);
 
-        // TODO: Get values from dropdowns you fucking idiot
         s_QualityIndex = _settings.m_QualityIndex;
         s_WindowModeIndex = _settings.m_WindowModeIndex;
         s_Resolution = _settings.m_Resolution;
-    }
-
-    // TODO: Debug, remove later
-    public static void PrintSettings()
-    {
-        //Debug.Log("Master volume: " + s_MasterVolume);
-        //Debug.Log("Music volume: " + s_MusicVolume);
-        //Debug.Log("Dialogue volume: " + s_DialogueVolume);
-        //Debug.Log("Ambient volume: " + s_AmbientVolume);
-        //Debug.Log("Quality index: " + s_QualityIndex);
-        Debug.Log("Window mode index: " + s_WindowModeIndex);
-
-        //Debug.Log("Resolution:");
-        //foreach(var v in s_Resolution)
-        //{
-        //    Debug.Log(v);
-        //}
     }
 }

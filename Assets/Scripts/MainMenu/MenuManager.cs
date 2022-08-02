@@ -13,10 +13,6 @@ public class MenuManager : MonoBehaviour
         SetAudioVolume();
 
         // TODO: Debug, remove later
-        Debug.Log("GAME START");
-        GameSettings.PrintSettings();
-
-        // TODO: Debug, remove later
         AudioManager.m_Instance.Play("Hillbilly");
         AudioManager.m_Instance.Play("Raving");
         AudioManager.m_Instance.Play("Deed");

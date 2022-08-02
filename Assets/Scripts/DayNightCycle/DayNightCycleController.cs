@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class DayNightCycleController : MonoBehaviour
 {
@@ -116,7 +118,7 @@ public class DayNightCycleController : MonoBehaviour
     private void UpdateTime()
     {
         m_TimeOfDay += Time.deltaTime * m_TimeScale / 86400; // Thomas: Seconds in a day
-        m_ElapsedTime += Time.deltaTime;
+        m_ElapsedTime = m_TimeOfDay;
 
         if (m_TimeOfDay > 1)
         {
@@ -130,12 +132,11 @@ public class DayNightCycleController : MonoBehaviour
                 m_DayNumber = 1;
             }
         }
-
     }
 
     private void UpdateClock()
     {
-        float time = m_ElapsedTime / (m_TargetDayLength * 60);
+        float time = m_ElapsedTime;
         float hour = Mathf.FloorToInt(time * 24);
         float minute = Mathf.FloorToInt(((time * 24) - hour) * 60);
 
@@ -158,10 +159,10 @@ public class DayNightCycleController : MonoBehaviour
     private void UpdateSunRotation()
     {
         float sunAngle = m_TimeOfDay * 360.0f;
-        m_DailyRotation.transform.localRotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, sunAngle));
+        m_DailyRotation.transform.localRotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, -sunAngle));
 
         float seasonalAngle = -m_MaxSeasonalTilt * Mathf.Sin((float)m_DayNumber / (float)m_YearLength * Mathf.PI);
-        m_SeasonalRotation.localRotation = Quaternion.Euler(new Vector3(seasonalAngle, 0.0f, 0.0f));
+        m_SeasonalRotation.localRotation = Quaternion.Euler(new Vector3(seasonalAngle - 180.0f, 0.0f, 0.0f));
     }
 
     private void UpdateSunIntensity()
@@ -195,6 +196,11 @@ public class DayNightCycleController : MonoBehaviour
         RenderSettings.skybox.SetColor("_GroundColor", m_HorizonColour.Evaluate(m_Intensity));
     }
 
+    public void SetTime(TimeObject _timeOfDay)
+    {
+        m_TimeOfDay = (_timeOfDay.hours * 60 + _timeOfDay.minutes) * 60 / 86400;
+    }
+
     private void Start()
     {
         NormaliseTimeCurve();
@@ -202,19 +208,19 @@ public class DayNightCycleController : MonoBehaviour
 
     private void Update()
     {
-        if(!m_IsPaused)
-        {
-            UpdateTimeScale();
-            UpdateTime();
-            UpdateClock();
+        if (m_IsPaused)
+            return;
 
-            UpdateSunRotation();
-            UpdateSunIntensity();
-            UpdateSunColour();
+        UpdateTimeScale();
+        UpdateTime();
+        UpdateClock();
 
-            UpdateMoon();
+        UpdateSunRotation();
+        UpdateSunIntensity();
+        UpdateSunColour();
 
-            UpdateSkyColour();
-        }
+        UpdateMoon();
+
+        UpdateSkyColour();
     }
 }

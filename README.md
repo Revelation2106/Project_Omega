@@ -33,3 +33,10 @@
 - Fixed day/night cycle
 		- Horizon now uses gradient
 		- Moon visible at night and scene now darkens correctly
+
+01/08/22
+- Began work on dialogue system
+	- TODO: 
+		- Fix issue with dialogue skipping
+		- Make dialogue serialisable
+		- Add name and portrait tags to Ink files and integrate into UI
