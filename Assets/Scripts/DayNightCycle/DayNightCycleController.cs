@@ -7,92 +7,70 @@ public class DayNightCycleController : MonoBehaviour
 {
     [Header("Time")]
     [Tooltip("Day lenth in minutes")]
-    [SerializeField]
-    private float m_TargetDayLength = 0.5f;
+    [SerializeField] private float m_TargetDayLength = 0.5f;
     public float TargetDayLength
     {
         get { return m_TargetDayLength; }
     }
 
-    [SerializeField]
-    private TMPro.TMP_Text m_TimeText;
+    [SerializeField] private TMPro.TMP_Text m_TimeText;
 
     private float m_ElapsedTime;
 
-    [SerializeField]
-    [Range(0.0f, 1.0f)]
-    private float m_TimeOfDay;
+    [SerializeField] [Range(0.0f, 1.0f)] private float m_TimeOfDay;
     public float TimeOfDay
     {
         get { return m_TimeOfDay; }
     }
 
-    [SerializeField]
-    private int m_DayNumber = 1;
+    [SerializeField] private int m_DayNumber = 1;
     public int DayNumber
     {
         get { return m_DayNumber; }
     }
 
-    [SerializeField]
-    private int m_YearNumber = 1;
+    [SerializeField] private int m_YearNumber = 1;
     public int YearNumber
     {
         get { return m_YearNumber; }
     }
 
-    [SerializeField]
-    private int m_YearLength = 365;
+    [SerializeField] private int m_YearLength = 365;
     public int YearLength
     {
         get { return m_YearLength; }
     }
 
-    [SerializeField]
-    private float m_TimeScale = 100.0f;
+    [SerializeField] private float m_TimeScale = 100.0f;
+
     public bool m_IsPaused = false;
     public bool m_IsUsing24HourClock = false;
 
-    [SerializeField]
-    private AnimationCurve m_TimeCurve;
+    [SerializeField] private AnimationCurve m_TimeCurve;
     private float m_TimeCurveNormalisation;
 
     [Header("Sun Light")]
-    [SerializeField]
-    private Transform m_DailyRotation;
-    [SerializeField]
-    private Light m_Sun;
+    [SerializeField] private Transform m_DailyRotation;
+    [SerializeField] private Light m_Sun;
 
     private float m_Intensity;
-    [SerializeField]
-    private float m_SunBaseIntensity = 1.0f, m_SunVariation = 1.5f;
-    [SerializeField]
-    private Gradient m_SunColour;
-    [SerializeField]
-    private AnimationCurve m_AtmosphereCurve;
+    [SerializeField] private float m_SunBaseIntensity = 1.0f, m_SunVariation = 1.5f;
+    [SerializeField] private Gradient m_SunColour;
+    [SerializeField] private AnimationCurve m_AtmosphereCurve;
 
     [Header("Moon Light")]
-    [SerializeField]
-    private Light m_Moon;
-    [SerializeField]
-    private Gradient m_MoonColour;
-    [SerializeField]
-    private float m_MoonBaseIntensity;
+    [SerializeField] private Light m_Moon;
+    [SerializeField] private Gradient m_MoonColour;
+    [SerializeField] private float m_MoonBaseIntensity;
 
     [Header("Sky Light")]
-    [SerializeField]
-    private Gradient m_SkyColour;
-    [SerializeField] 
-    private Gradient m_HorizonColour;
-    [SerializeField]
-    private Color m_DayAmbientLight, m_NightAmbientLight;
+    [SerializeField] private Gradient m_SkyColour;
+    [SerializeField] private Gradient m_HorizonColour;
+    [SerializeField] private Color m_DayAmbientLight, m_NightAmbientLight;
 
     [Header("Seasonal Variables")]
-    [SerializeField]
-    private Transform m_SeasonalRotation;
-    [SerializeField]
-    [Range(-45.0f, 45.0f)]
-    private float m_MaxSeasonalTilt;
+    [SerializeField] private Transform m_SeasonalRotation;
+    [SerializeField] [Range(-45.0f, 45.0f)] private float m_MaxSeasonalTilt;
 
     private void UpdateTimeScale()
     {

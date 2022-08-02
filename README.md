@@ -40,3 +40,11 @@
 		- Fix issue with dialogue skipping
 		- Make dialogue serialisable
 		- Add name and portrait tags to Ink files and integrate into UI
+		
+02/08/22
+- Continued work on dialogue system
+	- Fixed issue with dialogue skipping due to race condition
+	- Added name and portrait/portrait position support
+- TODO: Make dialogue serialisable
+	- Need to save position in dialogue per Ink file and when loading dialouge
+	  don't pass in new Story() 

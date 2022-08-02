@@ -16,22 +16,26 @@ public sealed class DialogueManager : MonoBehaviour
 
     public static DialogueManager Instance { get { return lazy.Value; } }
 
-    [SerializeField]
-    private GameObject m_DialoguePanel;
-    [SerializeField]
-    private TextMeshProUGUI m_DialogueText;
+    [SerializeField] private GameObject m_DialoguePanel;
 
-    [SerializeField]
-    private GameObject[] m_Choices;
-    [SerializeField]
-    private TextMeshProUGUI[] m_ChoicesText;
+    [SerializeField] private TextMeshProUGUI m_DialogueText;
+    [SerializeField] private TextMeshProUGUI m_DisplayNameText;
 
-    [SerializeField]
-    private PlayerInput m_PlayerInput;
+    [SerializeField] private Animator m_PortraitAnimator;
+    private Animator m_LayoutAnimator;
+
+    [SerializeField] private GameObject[] m_Choices;
+    [SerializeField] private TextMeshProUGUI[] m_ChoicesText;
+
+    [SerializeField] private PlayerInput m_PlayerInput;
 
     private Story m_Story;
 
     public bool m_IsInDialogue { get; private set; } = false;
+
+    private const string SPEAKER_TAG = "speaker";
+    private const string PORTRAIT_TAG = "portrait";
+    private const string LAYOUT_TAG = "layout";
 
     private DialogueManager()
     {
@@ -39,6 +43,11 @@ public sealed class DialogueManager : MonoBehaviour
 
     private void Start()
     {
+        m_IsInDialogue = false;
+        m_DialoguePanel.SetActive(false);
+
+        m_LayoutAnimator = m_DialoguePanel.GetComponent<Animator>();
+
         m_ChoicesText = new TextMeshProUGUI[m_Choices.Length];
         int index = 0;
         foreach(var choice in m_Choices)
@@ -48,27 +57,29 @@ public sealed class DialogueManager : MonoBehaviour
         }
     }
 
+    int tempIndex = 0;
+
     private void Update()
     {
         if (!m_IsInDialogue)
             return;
 
-        Debug.Log("m_Story.currentChoices.Count = " + m_Story.currentChoices.Count);
-        Debug.Log("Interact was pressed this frame? = " + m_PlayerInput.actions["Interact"].WasPressedThisFrame());
-
         if (m_Story.currentChoices.Count == 0 && m_PlayerInput.actions["Interact"].WasPressedThisFrame()) // TODO: figure out why this pish is triggering multiple fucking times
         {
+            tempIndex++;
             ContinueStory();
         }
     }
 
     public void BeginDialogue(TextAsset _JSONText)
     {
-        Debug.Log("Dialogue started!");
-
         m_Story = new Story(_JSONText.text);
         m_IsInDialogue = true;
         m_DialoguePanel.SetActive(true);
+
+        m_DisplayNameText.text = "???";
+        m_PortraitAnimator.Play("default");
+        m_LayoutAnimator.Play("right");
 
         ContinueStory();
     }
@@ -77,9 +88,9 @@ public sealed class DialogueManager : MonoBehaviour
     {
         if (m_Story.canContinue)
         {
-            Debug.Log("Dialogue continued!");
             m_DialogueText.text = m_Story.Continue();
             DisplayChoices();
+            HandleTags(m_Story.currentTags);
         }
         else
         {
@@ -87,10 +98,37 @@ public sealed class DialogueManager : MonoBehaviour
         }
     }
 
+    private void HandleTags(List<string> _currentTags)
+    {
+        foreach(var tag in _currentTags)
+        {
+            string[] splitTag = tag.Split(':');
+            if(splitTag.Length != 2)
+                Debug.LogWarning("Tag could not be appropriately parsed: " + tag);
+
+            string tagKey = splitTag[0].Trim();
+            string tagValue = splitTag[1].Trim();
+
+            switch(tagKey)
+            {
+                case SPEAKER_TAG:
+                    m_DisplayNameText.text = tagValue;
+                    break;
+                case PORTRAIT_TAG:
+                    m_PortraitAnimator.Play(tagValue);
+                    break;
+                case LAYOUT_TAG:
+                    m_LayoutAnimator.Play(tagValue);
+                    break;
+                default:
+                    Debug.Log("Tag came in but is not currently being handled: " + tag);
+                    break;
+            }
+        }
+    }
+
     private void DisplayChoices()
     {
-        Debug.Log("Choices displayed!");
-
         List<Choice> currentChoices = m_Story.currentChoices;
 
         if(currentChoices.Count > m_Choices.Length)
@@ -115,22 +153,8 @@ public sealed class DialogueManager : MonoBehaviour
         StartCoroutine(SelectFirstChoice());
     }
 
-
-    public IEnumerator EndDialogue()
-    {
-        Debug.Log("Dialogue ended!");
-
-        yield return new WaitForSeconds(2.0f); // TODO: Change to small value after debugging
-
-        m_IsInDialogue = false;
-        m_DialogueText.text = "";
-        m_DialoguePanel.SetActive(false);
-    }
-
     private IEnumerator SelectFirstChoice()
     {
-        Debug.Log("First choice selected!");
-
         EventSystem.current.SetSelectedGameObject(null);
         yield return new WaitForEndOfFrame();
         EventSystem.current.SetSelectedGameObject(m_Choices[0]);
@@ -138,9 +162,15 @@ public sealed class DialogueManager : MonoBehaviour
 
     public void MakeChoice(int _choiceIndex)
     {
-        Debug.Log("Choice made!");
-
         m_Story.ChooseChoiceIndex(_choiceIndex);
-        ContinueStory();
+    }
+
+    public IEnumerator EndDialogue()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        m_IsInDialogue = false;
+        m_DialogueText.text = "";
+        m_DialoguePanel.SetActive(false);
     }
 }

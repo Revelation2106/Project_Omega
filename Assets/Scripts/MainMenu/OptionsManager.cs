@@ -6,13 +6,10 @@ using UnityEngine.UI;
 
 public class OptionsManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject m_MainMenuPanel, m_OptionsPanel, m_ConfirmGraphicsPanel;
+    [SerializeField] private GameObject m_MainMenuPanel, m_OptionsPanel, m_ConfirmGraphicsPanel;
 
-    [SerializeField]
-    private Slider m_MasterVolumeSlider, m_MusicVolumeSlider, m_DialogueVolumeSlider, m_AmbientVolumeSlider;
-    [SerializeField]
-    private TMP_Dropdown m_ResolutionDropdown, m_QualityDropdown, m_WindowModeDropdown;
+    [SerializeField] private Slider m_MasterVolumeSlider, m_MusicVolumeSlider, m_DialogueVolumeSlider, m_AmbientVolumeSlider;
+    [SerializeField] private TMP_Dropdown m_ResolutionDropdown, m_QualityDropdown, m_WindowModeDropdown;
 
     private void OnEnable()
     {

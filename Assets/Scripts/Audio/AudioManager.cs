@@ -7,8 +7,7 @@ public class AudioManager : MonoBehaviour
     public Sound[] m_Sounds;
     public static AudioManager m_Instance;
 
-    [SerializeField]
-    public AudioMixer m_AudioMixer;
+    [SerializeField] public AudioMixer m_AudioMixer;
 
     void Awake()
     {

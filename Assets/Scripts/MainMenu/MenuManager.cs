@@ -4,8 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject m_MainMenuPanel, m_OptionsPanel;
+    [SerializeField] private GameObject m_MainMenuPanel, m_OptionsPanel;
 
     private void Start()
     {

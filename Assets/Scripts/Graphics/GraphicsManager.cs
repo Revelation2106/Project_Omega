@@ -8,11 +8,9 @@ public class GraphicsManager : MonoBehaviour
 {
     private Resolution[] m_Resolutions;
 
-    [SerializeField]
-    private RenderPipelineAsset[] m_RenderPipelineAssets;
+    [SerializeField] private RenderPipelineAsset[] m_RenderPipelineAssets;
 
-    [SerializeField]
-    private GameObject m_ConfirmPanel;
+    [SerializeField] private GameObject m_ConfirmPanel;
 
     private float m_TimeRemaining = 10.0f;
 

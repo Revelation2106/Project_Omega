@@ -3,14 +3,11 @@ using UnityEngine.InputSystem;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject m_VisualCue;
+    [SerializeField] private GameObject m_VisualCue;
 
-    [SerializeField]
-    private TextAsset m_InkJSON;
+    [SerializeField] private TextAsset m_InkJSON;
 
-    [SerializeField]
-    private PlayerInput m_PlayerInput;
+    [SerializeField] private PlayerInput m_PlayerInput;
 
     private bool m_IsInRange = false;
 
