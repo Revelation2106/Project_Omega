@@ -48,3 +48,11 @@
 - TODO: Make dialogue serialisable
 	- Need to save position in dialogue per Ink file and when loading dialouge
 	  don't pass in new Story() 
+	 
+07/08/22
+- Refactored event system
+	- Now uses enums for event types instead of classes
+	- Option for data within events
+	- Added PostNow function to prevent issues with execution order
+- Refactored dialogue system to use new event system
+- Refactored input system to use new event system

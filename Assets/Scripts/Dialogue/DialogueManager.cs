@@ -7,15 +7,12 @@ using UnityEngine.EventSystems;
 using TMPro;
 using Ink.Runtime;
 
-
-public sealed class DialogueManager : MonoBehaviour
+public sealed class DialogueManager : ManagedInstance
 {
-    // TODO: Think I need to change this, debug logs show update isn't being run until E is pressed inside the trigger zone
-    private static readonly Lazy<DialogueManager> lazy =
-        new(() => GameObject.Find("DialogueManager").GetComponent<DialogueManager>());
+    [Header("Parameters")]
+    [SerializeField] private float m_TypingSpeed = 0.05f;
 
-    public static DialogueManager Instance { get { return lazy.Value; } }
-
+    [Header("Dialogue UI")]
     [SerializeField] private GameObject m_DialoguePanel;
 
     [SerializeField] private TextMeshProUGUI m_DialogueText;
@@ -24,21 +21,54 @@ public sealed class DialogueManager : MonoBehaviour
     [SerializeField] private Animator m_PortraitAnimator;
     private Animator m_LayoutAnimator;
 
+    [Header("Choices UI")]
     [SerializeField] private GameObject[] m_Choices;
     [SerializeField] private TextMeshProUGUI[] m_ChoicesText;
 
     [SerializeField] private PlayerInput m_PlayerInput;
 
     private Story m_Story;
-
     public bool m_IsInDialogue { get; private set; } = false;
+
+    private Coroutine m_DisplayLineCoroutine;
+    private bool m_CanContinueToNextLine = false;
 
     private const string SPEAKER_TAG = "speaker";
     private const string PORTRAIT_TAG = "portrait";
     private const string LAYOUT_TAG = "layout";
 
-    private DialogueManager()
+    private void Awake()
     {
+        InstanceManager.Add(this);
+    }
+
+    private void OnEnable()
+    {
+        InstanceManager.Get<GameEventSystem>().Subscribe(GameEventType.UISubmitPerformed, AdvanceDialogue);
+    }
+
+    private void OnDisable()
+    {
+        InstanceManager.Get<GameEventSystem>().Unsubscribe(GameEventType.UISubmitPerformed, AdvanceDialogue);
+    }
+
+    private void AdvanceDialogue(GameEvent e)
+    {
+        if (e.EventType != GameEventType.UISubmitPerformed ||
+            !m_IsInDialogue)
+            return;
+
+        if(!m_CanContinueToNextLine)
+        {
+            m_CanContinueToNextLine = true;
+            return;
+        }
+
+        if (m_CanContinueToNextLine && 
+            m_Story.currentChoices.Count == 0)
+        { 
+            ContinueStory();
+        }
     }
 
     private void Start()
@@ -57,22 +87,10 @@ public sealed class DialogueManager : MonoBehaviour
         }
     }
 
-    int tempIndex = 0;
-
-    private void Update()
-    {
-        if (!m_IsInDialogue)
-            return;
-
-        if (m_Story.currentChoices.Count == 0 && m_PlayerInput.actions["Interact"].WasPressedThisFrame()) // TODO: figure out why this pish is triggering multiple fucking times
-        {
-            tempIndex++;
-            ContinueStory();
-        }
-    }
-
     public void BeginDialogue(TextAsset _JSONText)
     {
+        m_PlayerInput.SwitchCurrentActionMap("UI");
+
         m_Story = new Story(_JSONText.text);
         m_IsInDialogue = true;
         m_DialoguePanel.SetActive(true);
@@ -88,14 +106,53 @@ public sealed class DialogueManager : MonoBehaviour
     {
         if (m_Story.canContinue)
         {
-            m_DialogueText.text = m_Story.Continue();
-            DisplayChoices();
+            if (m_DisplayLineCoroutine != null)
+                StopCoroutine(m_DisplayLineCoroutine);
+
+            m_DisplayLineCoroutine = StartCoroutine(DisplayLine(m_Story.Continue()));
             HandleTags(m_Story.currentTags);
         }
         else
         {
             StartCoroutine(EndDialogue());
         }
+    }
+
+    private IEnumerator DisplayLine(string line)
+    {
+        m_DialogueText.text = "";
+        m_CanContinueToNextLine = false;
+
+        HideChoices();
+
+        bool isAddingRichTextTag = false;
+
+        foreach(var letter in line.ToCharArray())
+        {
+            if(m_CanContinueToNextLine)
+            {
+                m_DialogueText.text = line;
+                break;
+            }
+
+            if(letter == '<' || isAddingRichTextTag)
+            {
+                isAddingRichTextTag = true;
+                m_DialogueText.text += letter;
+
+                if(letter ==  '>')
+                    isAddingRichTextTag = false;
+            }
+            else 
+            {
+                m_DialogueText.text += letter;
+                yield return new WaitForSeconds(m_TypingSpeed);
+            }
+        }
+
+        DisplayChoices();
+
+        m_CanContinueToNextLine = true;
     }
 
     private void HandleTags(List<string> _currentTags)
@@ -153,6 +210,14 @@ public sealed class DialogueManager : MonoBehaviour
         StartCoroutine(SelectFirstChoice());
     }
 
+    private void HideChoices()
+    {
+        foreach(var choiceButton in m_Choices)
+        {
+            choiceButton.SetActive(false);
+        }
+    }
+
     private IEnumerator SelectFirstChoice()
     {
         EventSystem.current.SetSelectedGameObject(null);
@@ -172,5 +237,7 @@ public sealed class DialogueManager : MonoBehaviour
         m_IsInDialogue = false;
         m_DialogueText.text = "";
         m_DialoguePanel.SetActive(false);
+
+        m_PlayerInput.SwitchCurrentActionMap("Player");
     }
 }

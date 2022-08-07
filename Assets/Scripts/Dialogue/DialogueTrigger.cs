@@ -16,26 +16,38 @@ public class DialogueTrigger : MonoBehaviour
         m_VisualCue.SetActive(false);
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        if(m_IsInRange && !DialogueManager.Instance.m_IsInDialogue)
-        {
-            m_VisualCue.SetActive(true);
-            if (m_PlayerInput.actions["Interact"].WasPressedThisFrame())
-            {
-                DialogueManager.Instance.BeginDialogue(m_InkJSON);
-            }
-        }
-        else
+        InstanceManager.Get<GameEventSystem>().Subscribe(GameEventType.InteractPerformed, DialogueStart);
+    }
+
+    private void OnDisable()
+    {
+        InstanceManager.Get<GameEventSystem>().Unsubscribe(GameEventType.InteractPerformed, DialogueStart);
+    }
+
+    private void DialogueStart(GameEvent e)
+    {
+        if(m_IsInRange && 
+            e.EventType == GameEventType.InteractPerformed &&
+           !InstanceManager.Get<DialogueManager>().m_IsInDialogue)
         {
             m_VisualCue.SetActive(false);
+            InstanceManager.Get<DialogueManager>().BeginDialogue(m_InkJSON);
         }
+    }
+
+    private void Update()
+    {
+        if(!m_IsInRange && InstanceManager.Get<DialogueManager>().m_IsInDialogue)
+            m_VisualCue.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider _collider)
     {
-        if(_collider.gameObject.tag == "Player")
+        if (_collider.gameObject.tag == "Player")
         {
+            m_VisualCue.SetActive(true);
             m_IsInRange = true;
         }
     }
@@ -44,6 +56,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (_collider.gameObject.tag == "Player")
         {
+            m_VisualCue.SetActive(false);
             m_IsInRange = false;
         }
     }
