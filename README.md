@@ -1,6 +1,4 @@
-# Project_Omega
- 
-##Changelog
+# Changelog
 
 08/08/22
 - Refactored AudioManager to use ManagedInstance
