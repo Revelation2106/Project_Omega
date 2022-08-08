@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.UI;
 
 public class GraphicsManager : MonoBehaviour
 {
@@ -55,8 +53,8 @@ public class GraphicsManager : MonoBehaviour
 
         if(m_TimeRemaining <= 0.0f)
         {
-            m_ConfirmPanel.SetActive(false);
             RevertGraphics();
+            m_ConfirmPanel.SetActive(false);
         }
     }
 
@@ -79,7 +77,6 @@ public class GraphicsManager : MonoBehaviour
     public void RevertGraphics()
     {
         SetGraphicsQuality(GameSettings.s_QualityIndex);
-        SetWindowMode(GameSettings.s_WindowModeIndex);
 
         int currentResolutionIndex = 0;
 
@@ -103,6 +100,7 @@ public class GraphicsManager : MonoBehaviour
         m_WindowModeDropdown.RefreshShownValue();
 
         SetScreenResolution(currentResolutionIndex);
+        SetWindowMode(GameSettings.s_WindowModeIndex > 2 ? 2 : GameSettings.s_WindowModeIndex);
     }
 
     public void SetGraphicsQuality(int _qualityIndex)
@@ -114,25 +112,21 @@ public class GraphicsManager : MonoBehaviour
     public void SetScreenResolution(int _resolutionIndex)
     {
         Resolution resolution = m_Resolutions[_resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreenMode);
     }
 
     public void SetWindowMode(int _windowModeIndex)
     {
-        //TODO: apply resolution correctly when changing window mode
         switch(_windowModeIndex)
         {
             case 0:
-                Screen.fullScreen = true;
-                Screen.SetResolution(Screen.width, Screen.height, FullScreenMode.ExclusiveFullScreen);
+                Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
                 break;
             case 1:
-                Screen.fullScreen = false;
-                Screen.SetResolution(Screen.width, Screen.height, FullScreenMode.FullScreenWindow);
+                Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
                 break;
             case 2:
-                Screen.fullScreen = false;
-                Screen.SetResolution(Screen.width, Screen.height, FullScreenMode.Windowed);
+                Screen.fullScreenMode = FullScreenMode.Windowed;
                 break;
             default:
                 Debug.Log("Failed to set window mode - index out of range!");

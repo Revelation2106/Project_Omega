@@ -1,6 +1,7 @@
 
 public enum GameEventType
 {
+    // Player input
     PlayerLook,
     PlayerMove,
     JumnpPerformed,
@@ -10,6 +11,7 @@ public enum GameEventType
     InteractPerformed,
     InteractCancelled,
 
+    // UI input
     UINavigate,
     UISubmitPerformed,
     UISubmitCancelled

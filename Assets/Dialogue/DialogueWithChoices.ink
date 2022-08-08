@@ -1,15 +1,17 @@
 -> main
 
 === main ===
-Riddle me this, sadmin...
-Who was in Paris?
-    + [Removed]
-        -> chosen("Removed")
-    + [Dunno]
-        -> chosen("Dunno")
-    + [Fuck Off]
-        -> chosen("Fuck Off")
+I have a question for you!
+What's your favourite RGBA value?
+    + [Red]
+        -> chosen("red")
+    + [Green]
+        -> chosen("green")
+    + [Blue]
+        -> chosen("blue")
+    + [Alpha]
+        -> chosen("alpha")
         
-=== chosen(paris) ===
-You chose {paris}!
+=== chosen(value) ===
+You chose {value}!
 -> END

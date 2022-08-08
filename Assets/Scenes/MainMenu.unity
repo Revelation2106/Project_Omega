@@ -1337,7 +1337,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 653476665}
+      - m_Target: {fileID: 1004927187}
         m_TargetAssemblyTypeName: GraphicsManager, Assembly-CSharp
         m_MethodName: SetWindowMode
         m_Mode: 0
@@ -1349,7 +1349,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 653476665}
+      - m_Target: {fileID: 1004927187}
         m_TargetAssemblyTypeName: GraphicsManager, Assembly-CSharp
         m_MethodName: ShowConfirmGraphicsPanel
         m_Mode: 1
@@ -2189,7 +2189,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 653476665}
+      - m_Target: {fileID: 1004927187}
         m_TargetAssemblyTypeName: GraphicsManager, Assembly-CSharp
         m_MethodName: SetScreenResolution
         m_Mode: 0
@@ -2201,7 +2201,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 653476665}
+      - m_Target: {fileID: 1004927187}
         m_TargetAssemblyTypeName: GraphicsManager, Assembly-CSharp
         m_MethodName: ShowConfirmGraphicsPanel
         m_Mode: 1
@@ -2746,7 +2746,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 653476665}
+      - m_Target: {fileID: 1004927187}
         m_TargetAssemblyTypeName: GraphicsManager, Assembly-CSharp
         m_MethodName: ConfirmGraphics
         m_Mode: 1
@@ -2758,7 +2758,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 653476665}
+      - m_Target: {fileID: 1004927187}
         m_TargetAssemblyTypeName: GraphicsManager, Assembly-CSharp
         m_MethodName: HideConfirmGraphicsPanel
         m_Mode: 1
@@ -2951,9 +2951,11 @@ GameObject:
   m_Component:
   - component: {fileID: 653476663}
   - component: {fileID: 653476667}
-  - component: {fileID: 653476665}
+  - component: {fileID: 653476668}
+  - component: {fileID: 653476670}
+  - component: {fileID: 653476669}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: AudioManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2974,27 +2976,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &653476665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 653476661}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2159ae661fa4cb64bba156b2e2f931b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RenderPipelineAssets:
-  - {fileID: 11400000, guid: d0e2fc18fe036412f8223b3b3d9ad574, type: 2}
-  - {fileID: 11400000, guid: e1260c1148f6143b28bae5ace5e9c5d1, type: 2}
-  - {fileID: 11400000, guid: 7b7fd9122c28c4d15b667c7040e3b3fd, type: 2}
-  m_ConfirmPanel: {fileID: 1250608754}
-  m_QualityDropdown: {fileID: 889682123}
-  m_ResolutionDropdown: {fileID: 482757267}
-  m_WindowModeDropdown: {fileID: 335875827}
-  m_CountdownText: {fileID: 402862564}
 --- !u!114 &653476667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3007,32 +2988,298 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8d8c4aac5465ed418e1ca7e48448459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Sounds:
-  - m_Clip: {fileID: 8300000, guid: 3d378fc80d0065447ae1a64f1bbdec8f, type: 3}
-    m_Volume: 1
-    m_Pitch: 1
-    m_Name: Hillbilly
-    m_Loop: 1
-    m_Source: {fileID: 0}
-    m_Group: {fileID: 4187954582001743761, guid: bccf11542f54f214294452f1cf828301,
-      type: 2}
-  - m_Clip: {fileID: 8300000, guid: 20e935763808bc34d95f4a6ce120c44f, type: 3}
-    m_Volume: 1
-    m_Pitch: 1
-    m_Name: Raving
-    m_Loop: 1
-    m_Source: {fileID: 0}
-    m_Group: {fileID: 7577087005263584693, guid: bccf11542f54f214294452f1cf828301,
-      type: 2}
-  - m_Clip: {fileID: 8300000, guid: 9fb208cae9b973949aee9505233d1cf4, type: 3}
-    m_Volume: 1
-    m_Pitch: 1
-    m_Name: Deed
-    m_Loop: 1
-    m_Source: {fileID: 0}
-    m_Group: {fileID: 1493314027626576754, guid: bccf11542f54f214294452f1cf828301,
-      type: 2}
   m_AudioMixer: {fileID: 24100000, guid: bccf11542f54f214294452f1cf828301, type: 2}
+  m_MusicSource: {fileID: 653476668}
+  m_DialogueSource: {fileID: 653476670}
+  m_AmbientSource: {fileID: 653476669}
+--- !u!82 &653476668
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653476661}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &653476669
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653476661}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &653476670
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653476661}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &676078658
 GameObject:
   m_ObjectHideFlags: 0
@@ -4003,7 +4250,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 653476665}
+      - m_Target: {fileID: 1004927187}
         m_TargetAssemblyTypeName: GraphicsManager, Assembly-CSharp
         m_MethodName: SetGraphicsQuality
         m_Mode: 0
@@ -4015,7 +4262,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 653476665}
+      - m_Target: {fileID: 1004927187}
         m_TargetAssemblyTypeName: GraphicsManager, Assembly-CSharp
         m_MethodName: ShowConfirmGraphicsPanel
         m_Mode: 1
@@ -4236,6 +4483,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MainMenuPanel: {fileID: 908165443}
   m_OptionsPanel: {fileID: 1397147311}
+  m_MusicVolTest: {fileID: 11400000, guid: c1c7d1756ca48d24fab0a098b64b2408, type: 2}
+  m_DialogueVolTest: {fileID: 11400000, guid: d002938a555904543959bb75ff2f056f, type: 2}
+  m_AmbientVolTest: {fileID: 11400000, guid: 9c2a5f87732506f4ca9d6c68d57952d1, type: 2}
 --- !u!1 &917591075
 GameObject:
   m_ObjectHideFlags: 0
@@ -4512,6 +4762,59 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1004927186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1004927188}
+  - component: {fileID: 1004927187}
+  m_Layer: 0
+  m_Name: GraphicsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1004927187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004927186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2159ae661fa4cb64bba156b2e2f931b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderPipelineAssets:
+  - {fileID: 11400000, guid: d0e2fc18fe036412f8223b3b3d9ad574, type: 2}
+  - {fileID: 11400000, guid: e1260c1148f6143b28bae5ace5e9c5d1, type: 2}
+  - {fileID: 11400000, guid: 7b7fd9122c28c4d15b667c7040e3b3fd, type: 2}
+  m_ConfirmPanel: {fileID: 1250608754}
+  m_QualityDropdown: {fileID: 889682123}
+  m_ResolutionDropdown: {fileID: 482757267}
+  m_WindowModeDropdown: {fileID: 335875827}
+  m_CountdownText: {fileID: 402862564}
+--- !u!4 &1004927188
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004927186}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 90}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1017992209
 GameObject:
   m_ObjectHideFlags: 0
@@ -8689,27 +8992,27 @@ MonoBehaviour:
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
-  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018,
+  m_ActionsAsset: {fileID: -944628639613478452, guid: 26c0145dc1ef08244a40e0f380ab07cf,
     type: 3}
-  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018,
+  m_PointAction: {fileID: -4110634858123229611, guid: 26c0145dc1ef08244a40e0f380ab07cf,
     type: 3}
-  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018,
+  m_MoveAction: {fileID: -4278505547422952827, guid: 26c0145dc1ef08244a40e0f380ab07cf,
     type: 3}
-  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018,
+  m_SubmitAction: {fileID: -2454995692367019552, guid: 26c0145dc1ef08244a40e0f380ab07cf,
     type: 3}
-  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018,
+  m_CancelAction: {fileID: -4282842973566336935, guid: 26c0145dc1ef08244a40e0f380ab07cf,
     type: 3}
-  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018,
+  m_LeftClickAction: {fileID: 8047468475716110550, guid: 26c0145dc1ef08244a40e0f380ab07cf,
     type: 3}
-  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018,
+  m_MiddleClickAction: {fileID: -462643646201600227, guid: 26c0145dc1ef08244a40e0f380ab07cf,
     type: 3}
-  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018,
+  m_RightClickAction: {fileID: -3291536236401981025, guid: 26c0145dc1ef08244a40e0f380ab07cf,
     type: 3}
-  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018,
+  m_ScrollWheelAction: {fileID: -8964612227426036688, guid: 26c0145dc1ef08244a40e0f380ab07cf,
     type: 3}
-  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018,
+  m_TrackedDevicePositionAction: {fileID: 7574518099786441148, guid: 26c0145dc1ef08244a40e0f380ab07cf,
     type: 3}
-  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018,
+  m_TrackedDeviceOrientationAction: {fileID: -6141861374193330554, guid: 26c0145dc1ef08244a40e0f380ab07cf,
     type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
@@ -9076,7 +9379,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 653476665}
+      - m_Target: {fileID: 1004927187}
         m_TargetAssemblyTypeName: GraphicsManager, Assembly-CSharp
         m_MethodName: RevertGraphics
         m_Mode: 1
@@ -9088,7 +9391,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 653476665}
+      - m_Target: {fileID: 1004927187}
         m_TargetAssemblyTypeName: GraphicsManager, Assembly-CSharp
         m_MethodName: HideConfirmGraphicsPanel
         m_Mode: 1

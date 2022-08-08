@@ -394,6 +394,7 @@ public class ThirdPersonController : MonoBehaviour
             if (m_FootstepAudioClips.Length > 0)
             {
                 var index = Random.Range(0, m_FootstepAudioClips.Length);
+                // TODO: change to use audio manager
                 AudioSource.PlayClipAtPoint(m_FootstepAudioClips[index], transform.TransformPoint(m_Controller.center), m_FootstepAudioVolume);
             }
         }
@@ -403,6 +404,7 @@ public class ThirdPersonController : MonoBehaviour
     {
         if (animationEvent.animatorClipInfo.weight > 0.5f)
         {
+            // TODO: change to use audio manager
             AudioSource.PlayClipAtPoint(m_LandingAudioClip, transform.TransformPoint(m_Controller.center), m_FootstepAudioVolume);
         }
     }

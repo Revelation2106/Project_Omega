@@ -56,3 +56,7 @@
 	- Added PostNow function to prevent issues with execution order
 - Refactored dialogue system to use new event system
 - Refactored input system to use new event system
+
+08/08/22
+- Refactored AudioManager to use ManagedInstance
+- Fixed bug with reverting graphics changes not setting window mode correctly

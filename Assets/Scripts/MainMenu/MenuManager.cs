@@ -6,23 +6,27 @@ public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject m_MainMenuPanel, m_OptionsPanel;
 
+    // TODO: Debug, remove later
+    [SerializeField] private SoundObject m_MusicVolTest, m_DialogueVolTest, m_AmbientVolTest;
+
     private void Start()
     {
         GameSettings.LoadSettings();
         SetAudioVolume();
 
         // TODO: Debug, remove later
-        AudioManager.m_Instance.Play("Hillbilly");
-        AudioManager.m_Instance.Play("Raving");
-        AudioManager.m_Instance.Play("Deed");
+        InstanceManager.Get<AudioManager>().PlayMusic(m_MusicVolTest);
+        InstanceManager.Get<AudioManager>().PlayDialogue(m_DialogueVolTest);
+        InstanceManager.Get<AudioManager>().PlayAmbient(m_AmbientVolTest);
+        // -----------------------------
     }
 
     private void SetAudioVolume()
     {
-        AudioManager.m_Instance.SetMasterVolume(GameSettings.s_MasterVolume);
-        AudioManager.m_Instance.SetMusicVolume(GameSettings.s_MusicVolume);
-        AudioManager.m_Instance.SetDialogueVolume(GameSettings.s_DialogueVolume);
-        AudioManager.m_Instance.SetAmbientVolume(GameSettings.s_AmbientVolume);
+        InstanceManager.Get<AudioManager>().SetMasterVolume(GameSettings.s_MasterVolume);
+        InstanceManager.Get<AudioManager>().SetMusicVolume(GameSettings.s_MusicVolume);
+        InstanceManager.Get<AudioManager>().SetDialogueVolume(GameSettings.s_DialogueVolume);
+        InstanceManager.Get<AudioManager>().SetAmbientVolume(GameSettings.s_AmbientVolume);
     }
 
     public void PlayGame()

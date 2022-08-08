@@ -21,10 +21,6 @@ public class OptionsManager : MonoBehaviour
         m_QualityDropdown.value = GameSettings.s_QualityIndex;
         m_QualityDropdown.RefreshShownValue();
 
-        //m_ResolutionDropdown.value = Array.IndexOf(Screen.resolutions, Screen.currentResolution);
-        //m_ResolutionDropdown.RefreshShownValue();
-
-        // TODO: update value on game load
         m_WindowModeDropdown.value = GameSettings.s_WindowModeIndex > 2 ? 2 : GameSettings.s_WindowModeIndex;
         m_WindowModeDropdown.RefreshShownValue();
 

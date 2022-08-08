@@ -8,9 +8,10 @@ How are you feeling today?
 + [Sad]
     Oh, well that makes me sad too. #portrait:sadPepe
     
-- Don't trust him, he's not a real doctor! #speaker:Your Mum #portrait:yourMum #layout:right
+- Don't trust him, he's not a real doctor! #speaker:Big Susan #portrait:yourMum #layout:right
 
-Well, do you have any more questions? #speaker:Dr. Pepe #portrait:defaultPepe #layout:left
+Oh, ignore her! She's clearly mad! #speaker:Dr. Pepe #portrait:defaultPepe #layout:left
+Anyway, do you have any more questions? 
 + [Yes]
     -> main
 + [No]

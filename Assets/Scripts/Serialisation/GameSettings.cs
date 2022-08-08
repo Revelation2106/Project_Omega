@@ -11,10 +11,10 @@ public class GameSettings_Internal
 
     public GameSettings_Internal()
     {
-        AudioManager.m_Instance.m_AudioMixer.GetFloat("MasterVolume", out m_MasterVolume);
-        AudioManager.m_Instance.m_AudioMixer.GetFloat("MusicVolume", out m_MusicVolume);
-        AudioManager.m_Instance.m_AudioMixer.GetFloat("DialogueVolume", out m_DialogueVolume);
-        AudioManager.m_Instance.m_AudioMixer.GetFloat("AmbientVolume", out m_AmbientVolume);
+        InstanceManager.Get<AudioManager>().AudioMixer.GetFloat("MasterVolume", out m_MasterVolume);
+        InstanceManager.Get<AudioManager>().AudioMixer.GetFloat("MusicVolume", out m_MusicVolume);
+        InstanceManager.Get<AudioManager>().AudioMixer.GetFloat("DialogueVolume", out m_DialogueVolume);
+        InstanceManager.Get<AudioManager>().AudioMixer.GetFloat("AmbientVolume", out m_AmbientVolume);
 
         m_QualityIndex = QualitySettings.GetQualityLevel(); // TODO: Might need to set render pipeline here too
         m_WindowModeIndex = (int)Screen.fullScreenMode;
@@ -42,10 +42,10 @@ public static class GameSettings
         GameSettings_Internal settings = new();
         SyncSettings(settings);
 
-        BinaryFormatter formatter = new BinaryFormatter();
+        BinaryFormatter formatter = new();
 
         string path = PATH;
-        FileStream stream = new FileStream(path, FileMode.Create);
+        FileStream stream = new(path, FileMode.Create);
 
         formatter.Serialize(stream, settings);
         stream.Close();
@@ -56,17 +56,17 @@ public static class GameSettings
         if (!File.Exists(PATH))
             return;
 
-        BinaryFormatter formatter = new BinaryFormatter();
+        BinaryFormatter formatter = new();
 
-        FileStream stream = new FileStream(PATH, FileMode.Open);
+        FileStream stream = new(PATH, FileMode.Open);
 
         GameSettings_Internal data = formatter.Deserialize(stream) as GameSettings_Internal;
         stream.Close();
 
-        AudioManager.m_Instance.m_AudioMixer.SetFloat("MasterVolume", Mathf.Log10(data.m_MasterVolume) * 20);
-        AudioManager.m_Instance.m_AudioMixer.SetFloat("MusicVolume", Mathf.Log10(data.m_MusicVolume) * 20);
-        AudioManager.m_Instance.m_AudioMixer.SetFloat("DialogueVolume", Mathf.Log10(data.m_DialogueVolume) * 20);
-        AudioManager.m_Instance.m_AudioMixer.SetFloat("AmbientVolume", Mathf.Log10(data.m_AmbientVolume) * 20);
+        InstanceManager.Get<AudioManager>().AudioMixer.SetFloat("MasterVolume", Mathf.Log10(data.m_MasterVolume) * 20);
+        InstanceManager.Get<AudioManager>().AudioMixer.SetFloat("MusicVolume", Mathf.Log10(data.m_MusicVolume) * 20);
+        InstanceManager.Get<AudioManager>().AudioMixer.SetFloat("DialogueVolume", Mathf.Log10(data.m_DialogueVolume) * 20);
+        InstanceManager.Get<AudioManager>().AudioMixer.SetFloat("AmbientVolume", Mathf.Log10(data.m_AmbientVolume) * 20);
 
         QualitySettings.SetQualityLevel(data.m_QualityIndex);
         Screen.SetResolution(data.m_Resolution[0], data.m_Resolution[1], (FullScreenMode)data.m_WindowModeIndex);
